@@ -1,0 +1,39 @@
+﻿@model AllCountriesVIewModel
+
+<div class="row d-flex flex-column offset-5">
+
+    @foreach (var country in this.Model.AllCountries)
+    {
+        
+
+        <div class="col-md-6">
+            <div class="d-flex justify-content-around">
+                <a class="mb-5" asp-controller="Countries" asp-action="Edit" asp-route-id="@country.Id">@country.Name</a>
+                <a class="mb-5 btn btn-danger" asp-controller="Countries" asp-action="Delete" asp-route-id="@country.Id">Delete</a>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+@{
+
+    int previousPage = this.Model.CurrentPage - 1;
+
+    string btnShouldBeDisabled = String.Empty;
+
+    if (previousPage < 1)
+    {
+        previousPage = 1;
+        btnShouldBeDisabled = "disabled";
+    }
+
+}
+
+
+<div class="row d-flex justify-content-around offset-1">
+    <a class="btn btn-success @btnShouldBeDisabled" asp-controller="Countries" asp-action="All" asp-route-currentPage="@previousPage">Previous</a>
+    <a class="btn btn-success" asp-controller="Countries" asp-action="All" asp-route-currentPage="@(this.Model.CurrentPage + 1)">Next</a>
+</div>
+

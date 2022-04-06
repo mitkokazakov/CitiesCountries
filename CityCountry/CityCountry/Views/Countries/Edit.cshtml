@@ -1,0 +1,27 @@
+﻿@model CountryViewModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">Edit Country</h2>
+
+        <form method="post" asp-controller="Countries" asp-action="Edit" asp-route-id="@this.Model.Id" >
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" name="Name" value="@this.Model.Name">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-success mt-3 text-center" type="submit" value="Change" />
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
